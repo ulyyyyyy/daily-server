@@ -1,0 +1,13 @@
+server:
+  port: 2222
+  jackson:
+    data-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://admin:123456@49.234.224.58:27017/daily?authSource=admin
+
+wxUrls:
+  openId: "https://api.weixin.qq.com/sns/jscode2session?appid=wx0a1dad7d3581e982&secret=38597f88662f5358dfa84725ce3abdb8&js_code=%s&grant_type=authorization_code"

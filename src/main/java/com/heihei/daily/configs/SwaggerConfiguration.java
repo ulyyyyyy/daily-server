@@ -40,7 +40,7 @@ public class SwaggerConfiguration {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.lilith.jiracenter"))
+                .apis(RequestHandlerSelectors.basePackage("com.heihei.daily"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -48,10 +48,9 @@ public class SwaggerConfiguration {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("莉莉丝Jira Center api接口演示文档")
-                .description("莉莉丝Jira Center rest api文档")
-                .termsOfServiceUrl("http://jira-center.qa.lilithgames.com")
-                .contact(new Contact("黑黑", "", "zhiweigao@lilith.com"))
+                .title("Dai & Hei minigrammers' api接口演示文档")
+                .description("呆呆和黑黑的小世界 rest api文档")
+                .contact(new Contact("黑黑", "", "gzw736118298@qq.com"))
                 .version("1.0")
                 .build();
     }
