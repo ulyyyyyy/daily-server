@@ -19,13 +19,17 @@ public class InfoService {
     @Autowired
     InfoListRepository infoListRepository;
 
+
+    public List<Info> getAllInfos() {
+        return infoListRepository.findAll();
+    }
     /**
      * 获取用户下所有Info
      *
      * @param userId 用户id
      * @return Info
      */
-    public Info getAllInfo(String userId) {
+    public Info getInfoById(String userId) {
 
         Optional<Info> optionalInfo = infoListRepository.findById(userId);
         return optionalInfo.orElse(new Info());

@@ -1,6 +1,7 @@
 package com.heihei.daily.domains.models.Info;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 
@@ -8,9 +9,10 @@ import java.util.Date;
 public class TodoInfo {
 
     /**
-     * 截止时间
+     * id
      */
-    private Date todoTime;
+    @Id
+    private String infoId;
 
     /**
      * 内容
@@ -18,9 +20,9 @@ public class TodoInfo {
     private String content;
 
     /**
-     * id
+     * 截止时间
      */
-    private String infoId;
+    private Date todoTime;
 
     /**
      * 处理人

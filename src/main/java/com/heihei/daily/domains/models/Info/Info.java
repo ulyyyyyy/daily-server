@@ -2,6 +2,7 @@ package com.heihei.daily.domains.models.Info;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
@@ -10,19 +11,15 @@ import java.util.List;
 public class Info {
 
     /**
-     * User Id
+     * Info Id
      */
-    private String id;
+    @Id
+    private String infoId;
 
     /**
      * 用户名
      */
     private String nickName;
-
-    /**
-     * 允许的列表
-     */
-    private List<String> allowedList;
 
     /**
      * TodoInfo类
@@ -34,7 +31,7 @@ public class Info {
      */
     private List<DoneInfo> done;
 
-    public Info(String id) {
-        this.id = id;
+    public Info(String infoId) {
+        this.infoId = infoId;
     }
 }
