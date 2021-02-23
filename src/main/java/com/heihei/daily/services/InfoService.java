@@ -6,7 +6,6 @@ import com.heihei.daily.domains.models.Info.DoneInfo;
 import com.heihei.daily.domains.models.Info.Info;
 import com.heihei.daily.domains.models.Info.TodoInfo;
 import com.heihei.daily.domains.storage.InfoListRepository;
-import com.sun.tools.javac.comp.Todo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +22,7 @@ public class InfoService {
     public List<Info> getAllInfos() {
         return infoListRepository.findAll();
     }
+
     /**
      * 获取用户下所有Info
      *
@@ -59,24 +59,40 @@ public class InfoService {
         return todoInfo;
     }
 
-    public MyResponseContent<TodoInfo> updateTodo(TodoInfo todoInfo, String id, String userId) {
-        List<TodoInfo> todoInfos = infoListRepository.findTodoInfoById(userId);
+    /**
+     * 更新todo info
+     *
+     * @param todoInfo 更新的Todo Info信息
+     * @param id       需要更新的todo info Id
+     * @param infoId   操作的Info Id
+     * @return 更新的Todo Info信息
+     */
+    public MyResponseContent<TodoInfo> updateTodo(TodoInfo todoInfo, String id, String infoId) {
+        List<TodoInfo> todoInfos = infoListRepository.findTodoInfoById(infoId);
         if (todoInfos != null && todoInfos.size() > 0) {
             for (TodoInfo ele : todoInfos) {
-                if (id.equals(ele.getInfoId())) {
+                if (id.equals(ele.getId())) {
                     ele.updateTodoInfo(todoInfo);
                     break;
                 }
             }
-            infoListRepository.saveTodoInfoById(todoInfos, userId);
+            infoListRepository.saveTodoInfoById(todoInfos, infoId);
             return new MyResponseContent<>(true, todoInfo, HttpStatusCode.HTTP_INFO_UPDATED);
         } else {
             return new MyResponseContent<>(false, todoInfo, HttpStatusCode.HTTP_INFO_ID_NOT_FOUND);
         }
     }
 
-    public Object deleteTodo(String id, String userId) {
-        return "";
+    /**
+     *
+     * @param id       需要更新的todo info Id
+     * @param infoId   操作的Info Id
+     * @return
+     */
+    public MyResponseContent<String> deleteTodo(String id, String infoId) {
+        List<TodoInfo> todoInfos = infoListRepository.findTodoInfoById(infoId);
+        todoInfos.removeIf(todoInfo -> id.equals(todoInfo.getId()));
+        return new MyResponseContent<>(true, id, HttpStatusCode.HTTP_DELETE_OK);
     }
 
     public DoneInfo createDone(DoneInfo doneInfo, String userId) {
@@ -101,7 +117,7 @@ public class InfoService {
         List<DoneInfo> doneInfos = infoListRepository.findDoneInfoById(userId);
         if (doneInfos != null && doneInfos.size() > 0) {
             for (DoneInfo ele : doneInfos) {
-                if (id.equals(ele.getInfoId())) {
+                if (id.equals(ele.getId())) {
                     ele.updateInfo(doneInfo);
                     break;
                 }
@@ -114,7 +130,9 @@ public class InfoService {
         }
     }
 
-    public Object deleteDone(String id, String userId) {
-        return "";
+    public MyResponseContent<String> deleteDone(String id, String infoId) {
+        List<DoneInfo> doneInfos = infoListRepository.findDoneInfoById(infoId);
+        doneInfos.removeIf(doneInfo -> id.equals(doneInfo.getId()));
+        return new MyResponseContent<>(true, id, HttpStatusCode.HTTP_DELETE_OK);
     }
 }

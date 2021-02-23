@@ -30,7 +30,7 @@ public class InfoController {
     }
 
     @GetMapping("/info")
-    @ApiOperation("获取当前Info List数据")
+    @ApiOperation("获取指定id的Info List数据")
     public MyResponseContent<Info> getInfoById(@RequestParam("infoId") String infoId) {
         return new MyResponseContent<>(true, services.getInfoById(infoId), HttpStatusCode.HTTP_OK);
     }
