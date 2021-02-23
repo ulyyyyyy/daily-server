@@ -4,15 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
 
+/**
+ * @author Administrator
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
 
-    @Id
+    @Field("id")
     private String  id;
 
     private String nickName;

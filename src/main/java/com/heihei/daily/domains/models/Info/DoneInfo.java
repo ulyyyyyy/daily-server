@@ -1,7 +1,7 @@
 package com.heihei.daily.domains.models.Info;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
 
@@ -11,7 +11,7 @@ public class DoneInfo {
     /**
      * Id
      */
-    @Id
+    @Field("id")
     private String id;
 
     /**
