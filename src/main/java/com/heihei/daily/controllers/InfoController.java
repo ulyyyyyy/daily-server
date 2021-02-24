@@ -34,15 +34,21 @@ public class InfoController {
     public MyResponseContent<Info> getInfoById(@RequestParam("infoId") String infoId) {
         return new MyResponseContent<>(true, services.getInfoById(infoId), HttpStatusCode.HTTP_OK);
     }
+    
+    @PostMapping("/info")
+    @ApiOperation("创建一个新的Info数据")
+    public MyResponseContent<String> createNewInfo(@RequestBody String nickName) {
+        return new MyResponseContent<>(true, services.createInfo(nickName), HttpStatusCode.HTTP_OK);
+    }
 
-    @PostMapping("/todo/info")
+    @PostMapping("/info/todo")
     @ApiOperation("提交一个新的todo list")
     public Object createNewTodo(@RequestBody TodoInfo todoInfo,
                                 @RequestParam("infoId") String infoId) {
-        return services.createInfo(todoInfo, infoId);
+        return services.createTodo(todoInfo, infoId);
     }
 
-    @PatchMapping("/todo/info/{id}")
+    @PatchMapping("/info/todo/{id}")
     @ApiOperation("修改一个新的todo list")
     public Object updateTodo(@RequestBody TodoInfo todoInfo,
                              @PathVariable("id") String id,
@@ -50,21 +56,21 @@ public class InfoController {
         return services.updateTodo(todoInfo, id, infoId);
     }
 
-    @DeleteMapping("/todo/info/{id}")
+    @DeleteMapping("/info/todo/{id}")
     @ApiOperation("删除一个todo list")
     public Object deleteTodo(@PathVariable("id") String id,
                              @RequestParam("infoId") String infoId) {
         return services.deleteTodo(id, infoId);
     }
 
-    @PostMapping("/done/info")
+    @PostMapping("/info/done")
     @ApiOperation("获取当前Done List数据")
     public DoneInfo createNewDone(@RequestBody DoneInfo doneInfo,
                                   @RequestParam("infoId") String infoId) {
         return services.createDone(doneInfo, infoId);
     }
 
-    @PatchMapping("/done/info/{id}")
+    @PatchMapping("/info/done/{id}")
     @ApiOperation("修改一个新的done list")
     public Object updateTodo(@RequestBody DoneInfo doneInfo,
                              @PathVariable("id") String id,
@@ -72,7 +78,7 @@ public class InfoController {
         return services.updateDone(doneInfo, id, infoId);
     }
 
-    @DeleteMapping("/done/info/{id}")
+    @DeleteMapping("/info/done/{id}")
     @ApiOperation("删除一个todo list")
     public Object deleteDone(@PathVariable("id") String id,
                              @RequestParam("userId") String userId) {

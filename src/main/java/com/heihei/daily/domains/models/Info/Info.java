@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -24,14 +25,14 @@ public class Info {
     /**
      * TodoInfo类
      */
-    private List<TodoInfo> todo;
+    private List<TodoInfo> todo = new ArrayList<>();
 
     /**
      * DoneInfo类
      */
-    private List<DoneInfo> done;
+    private List<DoneInfo> done = new ArrayList<>();
 
-    public Info(String infoId) {
-        this.infoId = infoId;
+    public Info(String nickName) {
+        this.nickName = nickName;
     }
 }

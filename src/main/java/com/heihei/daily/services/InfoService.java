@@ -36,6 +36,12 @@ public class InfoService {
         return optionalInfo.orElse(new Info());
     }
 
+
+    public String createInfo(String nickName) {
+        Info info = new Info(nickName);
+        return infoRepository.save(info).getInfoId();
+    }
+
     /**
      * 新增一条todoInfo
      *
@@ -43,7 +49,7 @@ public class InfoService {
      * @param userId   用户id
      * @return 新增的数据
      */
-    public TodoInfo createInfo(TodoInfo todoInfo, String userId) {
+    public TodoInfo createTodo(TodoInfo todoInfo, String userId) {
         Info info;
         Optional<Info> optionalInfo = infoRepository.findById(userId);
         if (optionalInfo.isPresent()) {
