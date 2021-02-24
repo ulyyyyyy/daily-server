@@ -49,7 +49,7 @@ public interface InfoRepository extends MongoRepository<Info, String> {
      * @param todoInfo 保存的todo Info数据
      * @param infoId   查询的info id
      */
-    @Query(value = "")
+    @Query(value = "insert todo where id = ?2")
     void saveTodoInfoByInfoId(TodoInfo todoInfo, String infoId);
 
     /**
@@ -58,7 +58,7 @@ public interface InfoRepository extends MongoRepository<Info, String> {
      * @param doneInfo 保存的done Info数据
      * @param infoId   查询的info id
      */
-    @Query(value = "")
+    @Query(value = "insert done where id = ?2")
     void saveDoneInfoByInfoId(DoneInfo doneInfo, String infoId);
 
     /**

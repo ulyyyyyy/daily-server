@@ -18,7 +18,7 @@ import java.util.Optional;
 public class InfoService {
 
     @Autowired
-    InfoRepository infoRepository;
+    private InfoRepository infoRepository;
 
     public List<Info> getAllInfos() {
         return infoRepository.findAll();
@@ -37,9 +37,8 @@ public class InfoService {
     }
 
 
-    public String createInfo(String nickName) {
-        Info info = new Info(nickName);
-        return infoRepository.save(info).getInfoId();
+    public Info createInfo(Info info) {
+        return infoRepository.save(info);
     }
 
     /**

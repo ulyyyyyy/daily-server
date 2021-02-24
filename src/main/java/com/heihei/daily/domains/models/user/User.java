@@ -17,6 +17,7 @@ import java.util.List;
 public class User {
 
     @Field("id")
+    @Id
     private String  id;
 
     private String nickName;

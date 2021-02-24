@@ -37,8 +37,8 @@ public class InfoController {
     
     @PostMapping("/info")
     @ApiOperation("创建一个新的Info数据")
-    public MyResponseContent<String> createNewInfo(@RequestBody String nickName) {
-        return new MyResponseContent<>(true, services.createInfo(nickName), HttpStatusCode.HTTP_OK);
+    public MyResponseContent<Info> createNewInfo(@RequestBody Info info) {
+        return new MyResponseContent<>(true, services.createInfo(info), HttpStatusCode.HTTP_OK);
     }
 
     @PostMapping("/info/todo")

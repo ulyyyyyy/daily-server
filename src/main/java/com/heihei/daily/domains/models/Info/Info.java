@@ -2,8 +2,10 @@ package com.heihei.daily.domains.models.Info;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,7 @@ public class Info {
      * Info Id
      */
     @Field("id")
+    @Id
     private String infoId;
 
     /**
