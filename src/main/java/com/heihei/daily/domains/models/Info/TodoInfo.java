@@ -12,7 +12,6 @@ public class TodoInfo {
     /**
      * id
      */
-    @Field("id")
     @Id
     private String id;
 

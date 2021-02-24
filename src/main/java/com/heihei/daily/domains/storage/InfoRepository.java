@@ -16,6 +16,15 @@ import java.util.List;
 public interface InfoRepository extends MongoRepository<Info, String> {
 
     /**
+     * 根据infoId获取当前Info数据
+     *
+     * @param infoId 当前的info Id
+     * @return 当前Info数据
+     */
+    @Query(value = "select * from daily where id = %:infoId%")
+    Info findInfoByInfoId(String infoId);
+
+    /**
      * 根据Info　id 查询所有TodoInfo
      *
      * @param infoId 查询的info id
@@ -33,6 +42,11 @@ public interface InfoRepository extends MongoRepository<Info, String> {
     @Query(value = "select done from daily where infoId = %:infoId%")
     List<DoneInfo> findDoneInfoByInfoId(String infoId);
 
+
+    @Query(value = "insert info.todo where info.$.todo.id=%:infoId%")
+    void saveTodoInfo(TodoInfo todoInfo, String id);
+
+
     /**
      * 根据Info Id 更新一个已存在的Todo Info
      *
@@ -40,7 +54,7 @@ public interface InfoRepository extends MongoRepository<Info, String> {
      * @param id       需要更新的todo id信息
      * @param infoId   查询的info id
      */
-    @Query(value = "update todo set todo=?1 where infoId=?3 and id=?2")
+    @Query(value = "update info set info.todo=?1 where infoId=?3 and id=?2")
     void saveTodoInfoByInfoId(TodoInfo todoInfo, String id, String infoId);
 
     /**
@@ -49,7 +63,7 @@ public interface InfoRepository extends MongoRepository<Info, String> {
      * @param todoInfo 保存的todo Info数据
      * @param infoId   查询的info id
      */
-    @Query(value = "insert todo where id = ?2")
+    @Query(value = "insert info.todo where id=%:infoId%")
     void saveTodoInfoByInfoId(TodoInfo todoInfo, String infoId);
 
     /**

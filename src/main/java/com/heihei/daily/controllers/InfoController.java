@@ -32,13 +32,13 @@ public class InfoController {
     @GetMapping("/info")
     @ApiOperation("获取指定id的Info List数据")
     public MyResponseContent<Info> getInfoById(@RequestParam("infoId") String infoId) {
-        return new MyResponseContent<>(true, services.getInfoById(infoId), HttpStatusCode.HTTP_OK);
+        return services.getInfoById(infoId);
     }
     
     @PostMapping("/info")
     @ApiOperation("创建一个新的Info数据")
-    public MyResponseContent<Info> createNewInfo(@RequestBody Info info) {
-        return new MyResponseContent<>(true, services.createInfo(info), HttpStatusCode.HTTP_OK);
+    public MyResponseContent<Info> createNewInfo(@RequestBody Info info, @RequestParam("userId") String userId) {
+        return services.createInfo(info, userId);
     }
 
     @PostMapping("/info/todo")
@@ -64,7 +64,7 @@ public class InfoController {
     }
 
     @PostMapping("/info/done")
-    @ApiOperation("获取当前Done List数据")
+    @ApiOperation("创建当前Done List数据")
     public DoneInfo createNewDone(@RequestBody DoneInfo doneInfo,
                                   @RequestParam("infoId") String infoId) {
         return services.createDone(doneInfo, infoId);

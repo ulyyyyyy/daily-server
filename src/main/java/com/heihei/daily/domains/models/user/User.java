@@ -18,7 +18,7 @@ public class User {
 
     @Field("id")
     @Id
-    private String  id;
+    private String id;
 
     private String nickName;
 

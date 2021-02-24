@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,6 @@ public class Info {
     /**
      * Info Id
      */
-    @Field("id")
     @Id
     private String infoId;
 
@@ -35,7 +33,12 @@ public class Info {
      */
     private List<DoneInfo> done = new ArrayList<>();
 
+
     public Info(String nickName) {
         this.nickName = nickName;
+    }
+
+    public boolean isNull(){
+        return this.getInfoId() != null && this.getInfoId().length() != 0;
     }
 }

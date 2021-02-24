@@ -12,7 +12,6 @@ public class DoneInfo {
     /**
      * Id
      */
-    @Field("id")
     @Id
     private String id;
 
