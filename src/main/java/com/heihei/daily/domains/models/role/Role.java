@@ -1,4 +1,4 @@
-package com.heihei.daily.domains.models.Role;
+package com.heihei.daily.domains.models.role;
 
 
 public enum Role {

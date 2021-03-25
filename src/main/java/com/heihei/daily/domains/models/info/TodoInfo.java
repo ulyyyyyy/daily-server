@@ -1,19 +1,21 @@
-package com.heihei.daily.domains.models.Info;
+package com.heihei.daily.domains.models.info;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TodoInfo {
 
     /**
      * id
      */
-    @Id
-    private String id;
+    private int id;
 
     /**
      * 内容
@@ -23,12 +25,17 @@ public class TodoInfo {
     /**
      * 截止时间
      */
-    private Date todoTime;
+    private Date todoTime = new Date();
 
     /**
      * 处理人
      */
     private String owner;
+
+    public TodoInfo(String content, String owner) {
+        this.content = content;
+        this.owner = owner;
+    }
 
     public void updateTodoInfo(TodoInfo todoInfo) {
         this.content = todoInfo.getContent();

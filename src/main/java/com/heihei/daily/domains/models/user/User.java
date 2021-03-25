@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,6 +16,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Document( collection = "user")
 public class User {
 
     @Field("id")
@@ -24,7 +27,7 @@ public class User {
 
     private String avatarUrl;
 
-    private List<String> allowedInfoList;
+    private List<String> allowedInfoList = new ArrayList<>();
 
     public void replace(User user) {
         if (this.getId() == null || this.getId().length() == 0) {
